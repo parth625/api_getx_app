@@ -3,7 +3,6 @@ import 'package:get_storage/get_storage.dart';
 class StorageServices {
   static String accessTokenKey = 'accessToken';
 
-
   static bool isLoggedIn()  {
     final box = GetStorage();
     String token = box.read(accessTokenKey) ?? '';

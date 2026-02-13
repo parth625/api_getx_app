@@ -2,10 +2,8 @@ import 'dart:developer';
 
 import 'package:api_app/pages/products_list.dart';
 import 'package:api_app/services/auth_services.dart';
-import 'package:api_app/services/storage_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../models/user.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -92,8 +90,8 @@ class _LoginPageState extends State<LoginPage> {
 
                       log('$result');
                       if (result) {
-                        User? currentUser = await AuthServices()
-                            .getCurrentAuthUser();
+                        // User? currentUser = await AuthServices()
+                        //     .getCurrentAuthUser();
                         Get.off(() => ProductsList());
                       } else {
                         if (context.mounted) {

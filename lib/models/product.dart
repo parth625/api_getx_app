@@ -2,16 +2,16 @@ class Product {
   int id;
   String title;
   String description;
-  String category;
-  double price;
-  double discountPercentage;
-  double rating;
+  String? category;
+  double? price;
+  double? discountPercentage;
+  double? rating;
   String? brand;
-  int weight;
-  String availabilityStatus;
-  String returnPolicy;
+  int? weight;
+  String? availabilityStatus;
+  String? returnPolicy;
   List<String> images;
-  String thumbnail;
+  String? thumbnail;
 
   Product({
     required this.id,
