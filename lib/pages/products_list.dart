@@ -16,14 +16,17 @@ class _ProductsListState extends State<ProductsList> {
   List<Product> products = [];
   bool isLoading = false;
 
+  final productController = Get.put(ProductController());
+
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        isLoading = true;
-      });
+      await productController.fetchProducts();
+        setState(() {
+          isLoading = true;
+        });
         products = await ApiServices().fetchProducts();
 
         setState(() {
@@ -36,17 +39,18 @@ class _ProductsListState extends State<ProductsList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Products List')),
-      body: isLoading
+      body: Obx(
+        () => productController.isLoading
             ? Center(child: CircularProgressIndicator())
             : GridView.builder(
-                itemCount: products.length,
+                itemCount: productController.products.length,
 
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 0.7,
                   crossAxisCount: 2,
                 ),
                 itemBuilder: (context, index) {
-                  Product product = products[index];
+                  Product product = productController.products[index];
                   return Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Container(
@@ -83,7 +87,7 @@ class _ProductsListState extends State<ProductsList> {
                   );
                 },
               ),
-
+      ),
     );
   }
 }
