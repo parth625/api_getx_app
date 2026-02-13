@@ -39,6 +39,8 @@ dependencies:
   liquid_glass_widgets: ^0.3.0-dev.1
   get: ^4.7.3
   get_storage: ^2.1.1
+  path_provider: ^2.1.5
+  file_picker: ^10.3.10
 
 dev_dependencies:
   flutter_test:

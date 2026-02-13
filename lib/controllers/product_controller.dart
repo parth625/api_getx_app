@@ -73,7 +73,7 @@ class ProductController extends GetxController {
 
       int index = _products.indexWhere((p) => p.id == updatedProduct.id);
 
-      log("$index, ${updatedProduct.id}");
+      log("$index, ${updated.id}");
 
       if (index != -1) {
         _products[index] = updatedProduct;

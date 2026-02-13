@@ -1,5 +1,5 @@
+import 'package:api_app/pages/files/image_pick_page.dart';
 import 'package:api_app/pages/login_page.dart';
-import 'package:api_app/pages/products_list.dart';
 import 'package:api_app/services/storage_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'API App',
       debugShowCheckedModeBanner: false,
-      home: StorageServices.isLoggedIn() ? ProductsList() : LoginPage(),
+      home: StorageServices.isLoggedIn() ? ImagePickPage() : LoginPage(),
     );
   }
 }
