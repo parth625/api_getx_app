@@ -3,6 +3,8 @@ import 'package:api_app/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../services/api_services.dart';
+
 class ProductsList extends StatefulWidget {
   const ProductsList({super.key});
 
@@ -14,22 +16,19 @@ class _ProductsListState extends State<ProductsList> {
   List<Product> products = [];
   bool isLoading = false;
 
-  final productController = Get.put(ProductController());
-
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await productController.fetchProducts();
-      //   setState(() {
-      //     isLoading = true;
-      //   });
-      //   products = await ApiServices().fetchProducts();
-      //
-      //   setState(() {
-      //     isLoading = false;
-      //   });
+      setState(() {
+        isLoading = true;
+      });
+        products = await ApiServices().fetchProducts();
+
+        setState(() {
+          isLoading = false;
+        });
     });
   }
 
@@ -37,18 +36,17 @@ class _ProductsListState extends State<ProductsList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Products List')),
-      body: Obx(
-        () => productController.isLoading
+      body: isLoading
             ? Center(child: CircularProgressIndicator())
             : GridView.builder(
-                itemCount: productController.products.length,
+                itemCount: products.length,
 
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   childAspectRatio: 0.7,
                   crossAxisCount: 2,
                 ),
                 itemBuilder: (context, index) {
-                  Product product = productController.products[index];
+                  Product product = products[index];
                   return Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Container(
@@ -85,7 +83,7 @@ class _ProductsListState extends State<ProductsList> {
                   );
                 },
               ),
-      ),
+
     );
   }
 }
