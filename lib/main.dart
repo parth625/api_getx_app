@@ -1,4 +1,3 @@
-import 'package:api_app/pages/download_image.dart';
 import 'package:api_app/pages/login_page.dart';
 import 'package:api_app/pages/products_list.dart';
 import 'package:api_app/services/storage_services.dart';
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'API App',
       debugShowCheckedModeBanner: false,
-      home: StorageServices.isLoggedIn() ? DownloadImage() : LoginPage(),
+      home: StorageServices.isLoggedIn() ? ProductsList() : LoginPage(),
     );
   }
 }
