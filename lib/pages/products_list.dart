@@ -3,8 +3,6 @@ import 'package:api_app/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../services/api_services.dart';
-
 class ProductsList extends StatefulWidget {
   const ProductsList({super.key});
 
@@ -24,14 +22,6 @@ class _ProductsListState extends State<ProductsList> {
 
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await productController.fetchProducts();
-        setState(() {
-          isLoading = true;
-        });
-        products = await ApiServices().fetchProducts();
-
-        setState(() {
-          isLoading = false;
-        });
     });
   }
 
